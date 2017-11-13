@@ -111,7 +111,15 @@ namespace atlxrconfig_namespace
 				if(imageWidthOut == sheetWidth && imageHeightOut == sheetHeight)
 				{
 					// Allocate GL resource:
-					texture = create_texture_2d_resource(api_context, sheetWidth, sheetHeight, false, false, false, data_format_type::unorm8_rgba, in_sampling_mode, {imageDataOut, imageDataOut + imageWidthOut * imageHeightOut * 4});
+					texture = create_texture_2d_resource(api_context,
+														 sheetWidth,
+														 sheetHeight,
+														 false,
+														 false,
+														 false,
+														 false, data_format_type::unorm8_rgba,
+														 in_sampling_mode,
+														 {imageDataOut, imageDataOut + imageWidthOut * imageHeightOut * 4});
 					for(auto idx : sheet_sprites)
 						sprites[idx].texture = texture;
 				}

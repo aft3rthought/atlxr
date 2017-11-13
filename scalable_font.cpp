@@ -102,6 +102,7 @@ namespace atlxrconfig_namespace
 															 false,
 															 false,
 															 false,
+															 false,
 															 data_format_type::unorm8_r,
 															 sampling_mode::linear,
 															 {l_fontSheetData, l_fontSheetData + l_fontSheetWidth * l_fontSheetHeight}));

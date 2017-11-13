@@ -29,6 +29,7 @@ namespace atlxrconfig_namespace
 														bool gpu_write_necessary,
 														bool cpu_write_necessary,
 														bool cpu_read_necessary,
+														bool render_target_necessary,
 														data_format_type data_format,
 														sampling_mode sampling_mode,
 														const region<unsigned char> & data)
@@ -46,7 +47,7 @@ namespace atlxrconfig_namespace
 		descriptor.SampleDesc.Count = 1;
 		descriptor.SampleDesc.Quality = 0;
 		descriptor.Usage = usage_and_cpu_flags.usage;
-		descriptor.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+		descriptor.BindFlags = D3D11_BIND_SHADER_RESOURCE | (render_target_necessary ? D3D11_BIND_RENDER_TARGET : 0);
 		descriptor.CPUAccessFlags = usage_and_cpu_flags.cpu_flags;
 		descriptor.MiscFlags = 0;
 
@@ -76,6 +77,7 @@ namespace atlxrconfig_namespace
 																	  bool gpu_write_necessary,
 																	  bool cpu_write_necessary,
 																	  bool cpu_read_necessary,
+																	  bool render_target_necessary,
 																	  data_format_type data_format,
 																	  sampling_mode sampling_mode)
 	{
@@ -92,7 +94,7 @@ namespace atlxrconfig_namespace
 		descriptor.SampleDesc.Count = 1;
 		descriptor.SampleDesc.Quality = 0;
 		descriptor.Usage = usage_and_cpu_flags.usage;
-		descriptor.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+		descriptor.BindFlags = D3D11_BIND_SHADER_RESOURCE | (render_target_necessary ? D3D11_BIND_RENDER_TARGET : 0);
 		descriptor.CPUAccessFlags = usage_and_cpu_flags.cpu_flags;
 		descriptor.MiscFlags = 0;
 

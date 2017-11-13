@@ -113,6 +113,7 @@ namespace atlxrconfig_namespace
 														bool gpu_write_necessary,
 														bool cpu_write_necessary,
 														bool cpu_read_necessary,
+														bool render_target_necessary,
 														data_format_type data_format,
 														sampling_mode sampling_mode,
 														const region<unsigned char> & data);
@@ -123,6 +124,7 @@ namespace atlxrconfig_namespace
 																	  bool gpu_write_necessary,
 																	  bool cpu_write_necessary,
 																	  bool cpu_read_necessary,
+																	  bool render_target_necessary,
 																	  data_format_type data_format,
 																	  sampling_mode sampling_mode);
 
