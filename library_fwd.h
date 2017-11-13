@@ -87,6 +87,13 @@ namespace atlxrconfig_namespace
 											  const region<view_scissor_bounds> & viewport_stack_storage,
 											  const region<view_scissor_bounds> & scissor_rect_stack_storage);
 
+	render_target_type create_render_target_for_texture(device_context_type & device_context,
+														const region<view_scissor_bounds> & viewport_stack_storage,
+														const region<view_scissor_bounds> & scissor_rect_stack_storage,
+														texture_2d_resource_type & texture_2d_resource,
+														atlxr_uint width,
+														atlxr_uint height);
+
 	blend_state_type create_blend_state(device_context_type & device_context);
 
 	rasterizer_state_type create_rasterizer_state(device_context_type & device_context);
