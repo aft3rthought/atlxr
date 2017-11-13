@@ -101,6 +101,36 @@ namespace atlxrconfig_namespace
 			render_target.free();
 		}
 	};
+
+	struct blend_state_type
+	{
+		ID3D11BlendState * blend_state = nullptr;
+
+		bool is_valid() const
+		{
+			return blend_state != nullptr;
+		}
+
+		void free()
+		{
+			free_d3d_resource(blend_state);
+		}
+	};
+
+	struct rasterizer_state_type
+	{
+		ID3D11RasterizerState * rasterizer_state = nullptr;
+
+		bool is_valid() const
+		{
+			return rasterizer_state != nullptr;
+		}
+
+		void free()
+		{
+			free_d3d_resource(rasterizer_state);
+		}
+	};
 	
 	struct buffer_resource_type
 	{

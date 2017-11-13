@@ -57,6 +57,8 @@ namespace atlxrconfig_namespace
 	struct window_type;
 	struct device_context_type;
 	struct window_context_type;
+	struct blend_state_type;
+	struct rasterizer_state_type;
 	struct buffer_resource_type;
 	struct texture_2d_resource_type;
 	struct pixel_shader_resource_type;
@@ -84,6 +86,10 @@ namespace atlxrconfig_namespace
 											  const window_type & window,
 											  const region<view_scissor_bounds> & viewport_stack_storage,
 											  const region<view_scissor_bounds> & scissor_rect_stack_storage);
+
+	blend_state_type create_blend_state(device_context_type & device_context);
+
+	rasterizer_state_type create_rasterizer_state(device_context_type & device_context);
 
 	buffer_resource_type create_buffer(device_context_type & device_context,
 									   bool gpu_write_necessary,

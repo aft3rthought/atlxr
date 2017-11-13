@@ -22,6 +22,8 @@ namespace atlxrconfig_namespace
 		textured_2d_renderer_type result;
 		result.vertex_shader = create_vertex_shader(device_context, shader_data.data, input_structure);
 		result.pixel_shader = create_pixel_shader(device_context, shader_data.data, {"ps_main"});
+		result.blend_state = create_blend_state(device_context);
+		result.rasterizer_state = create_rasterizer_state(device_context);
 
 		return result;
 	}
@@ -31,14 +33,15 @@ namespace atlxrconfig_namespace
 							projection_2d_type & projection_2d,
 							texture_2d_resource_type & texture_2d,
 							buffer_resource_type & index_buffer,
-							buffer_resource_type & vertex_buffer)
+							buffer_resource_type & vertex_buffer,
+							unsigned int index_count)
 	{
 		auto & context = device_context.immediate_context3;
 
 		UINT stride = sizeof(textured_2d_vertex_type);
 		UINT offset = 0;
 		context->IASetVertexBuffers(0, 1, &vertex_buffer.buffer, &stride, &offset);
-		context->IASetIndexBuffer(index_buffer.buffer,DXGI_FORMAT_R16_UINT, 0);
+		context->IASetIndexBuffer(index_buffer.buffer, DXGI_FORMAT_R16_UINT, 0);
 		context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		context->IASetInputLayout(textured_2d_renderer.vertex_shader.input_layout);
 
@@ -49,6 +52,10 @@ namespace atlxrconfig_namespace
 		context->PSSetShaderResources(0, 1, &texture_2d.shader_resource_view);
 		context->PSSetSamplers(0, 1, &texture_2d.sampler_state);
 
-		context->DrawIndexed(12, 0, 0);
+		context->RSSetState(textured_2d_renderer.rasterizer_state.rasterizer_state);
+
+		context->OMSetBlendState(textured_2d_renderer.blend_state.blend_state, nullptr, 0xffffffff);
+
+		context->DrawIndexed(index_count, 0, 0);
 	}
 }
