@@ -44,7 +44,7 @@ namespace atlxrconfig_namespace
 
 	void projection_2d_pop(device_context_type & device_context, projection_2d_type & projection_2d)
 	{
-		if(projection_2d.projection_bounds_head > projection_2d.projection_bounds_stack.begin())
+		if(projection_2d.projection_bounds_head > projection_2d.projection_bounds_stack.begin() - 1)
 		{
 			projection_2d.projection_bounds_head--;
 			projection_2d_update_resource(device_context, projection_2d);
