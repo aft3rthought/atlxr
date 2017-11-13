@@ -22,7 +22,6 @@ namespace atlxrconfig_namespace
 		}
 		// TODO: Scissor
 		device_context.immediate_context->OMSetRenderTargets(1, &render_target.render_target_view, nullptr);// render_target.depth_stencil_view);
-
 	}
 
 	void clear_render_target(device_context_type & device_context, render_target_type & render_target, const color & color)

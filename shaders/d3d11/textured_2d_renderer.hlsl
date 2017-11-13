@@ -48,6 +48,6 @@ float4 ps_main(pixel_shader_input input) : SV_TARGET
 	color.r = color.r * input.color_multiply.r;
 	color.g = color.g * input.color_multiply.g;
 	color.b = color.b * input.color_multiply.b;
-	color.a = color.a *input.color_multiply.a;
+	color.a = color.a * input.color_multiply.a;
 	return color;
 }
