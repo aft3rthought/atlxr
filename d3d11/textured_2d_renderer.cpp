@@ -6,6 +6,8 @@ namespace atlxrconfig_namespace
 {
 	textured_2d_renderer_type create_textured_2d_renderer(device_context_type & device_context, const textured_2d_renderer_shader_data_type & shader_data)
 	{
+
+		// TODO: Vertex shader stuff is D3D specific but the blend & raster are not. Shouldn't all be in a d3d file.
 		vertex_shader_input_element_type elements[4] = 
 		{
 			{"POSITION", 0, data_format_type::float32_rg, offsetof(textured_2d_vertex_type, position)},

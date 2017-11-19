@@ -45,19 +45,22 @@ namespace atlxrconfig_namespace
 		}
 	};
 
-	struct view_scissor_bounds
+	struct viewport_type
 	{
 		D3D11_VIEWPORT viewport;
+	};
+
+	struct scissor_rect_type 
+	{
+		D3D11_RECT scissor_rect;
 	};
 
 	struct render_target_type
 	{
 		atlxr_uint width = 0;
 		atlxr_uint height = 0;
-		region<view_scissor_bounds> viewport_stack_storage = {nullptr, nullptr};
-		region<view_scissor_bounds> scissor_rect_stack_storage = {nullptr, nullptr};
-		view_scissor_bounds * viewport_stack_head = nullptr;
-		view_scissor_bounds * scissor_rect_stack_head = nullptr;
+		region_stack_type<viewport_type> viewport_stack = {{nullptr, nullptr}, nullptr};
+		region_stack_type<scissor_rect_type> scissor_rect_stack = {{nullptr, nullptr}, nullptr};
 		ID3D11RenderTargetView * render_target_view = nullptr;
 		ID3D11Texture2D * target_texture = nullptr;
 

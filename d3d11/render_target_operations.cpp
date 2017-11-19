@@ -5,7 +5,7 @@ namespace atlxrconfig_namespace
 {
 	void set_active_render_target(device_context_type & device_context, render_target_type & render_target)
 	{
-		if(render_target.viewport_stack_head == nullptr)
+		if(render_target.viewport_stack.empty())
 		{
 			D3D11_VIEWPORT fallback_viewport;
 			fallback_viewport.TopLeftX = 0;
@@ -18,15 +18,31 @@ namespace atlxrconfig_namespace
 		}
 		else
 		{
-			device_context.immediate_context->RSSetViewports(1, &render_target.viewport_stack_head->viewport);
+			device_context.immediate_context->RSSetViewports(1, &render_target.viewport_stack.top().viewport);
 		}
-		// TODO: Scissor
+		if(render_target.scissor_rect_stack.empty())
+		{
+			D3D11_RECT fallback_scissor_rect;
+			fallback_scissor_rect.top = 0;
+			fallback_scissor_rect.right = render_target.width;
+			fallback_scissor_rect.bottom = render_target.height;
+			fallback_scissor_rect.left = 0;
+			device_context.immediate_context->RSSetScissorRects(1, &fallback_scissor_rect);
+		}
+		else
+		{
+			device_context.immediate_context->RSSetScissorRects(1, &render_target.scissor_rect_stack.top().scissor_rect);
+		}
+		// TODO: Depth stencil view
 		device_context.immediate_context->OMSetRenderTargets(1, &render_target.render_target_view, nullptr);// render_target.depth_stencil_view);
+
+		if(device_context.dxgiDevice3)
+			device_context.dxgiDevice3->SetMaximumFrameLatency(1);
 	}
 
 	void clear_render_target(device_context_type & device_context, render_target_type & render_target, const color & color)
 	{
-		// Clear the back buffer and depth stencil view.
+		// TODO: Depth stencil view
 		device_context.immediate_context->ClearRenderTargetView(render_target.render_target_view, (float*)&color);
 		//device_context.immediate_context->ClearDepthStencilView(render_target.depth_stencil_view, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	}

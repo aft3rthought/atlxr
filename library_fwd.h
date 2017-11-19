@@ -3,7 +3,7 @@
 
 #include "ATLXR/library_config.h"
 
-#include "ATLUtil/region.h"
+#include "ATLUtil/region_stack.h"
 #include "ATLUtil/color.h"
 
 namespace atlxrconfig_namespace
@@ -52,7 +52,8 @@ namespace atlxrconfig_namespace
 		return 1;
 	}
 
-	struct view_scissor_bounds;
+	struct viewport_type;
+	struct scissor_rect_type;
 	struct render_target_type;
 	struct window_type;
 	struct device_context_type;
@@ -84,12 +85,12 @@ namespace atlxrconfig_namespace
 
 	window_context_type create_window_context(device_context_type & device_context,
 											  const window_type & window,
-											  const region<view_scissor_bounds> & viewport_stack_storage,
-											  const region<view_scissor_bounds> & scissor_rect_stack_storage);
+											  const region<viewport_type> & viewport_stack_storage,
+											  const region<scissor_rect_type> & scissor_rect_stack_storage);
 
 	render_target_type create_render_target_for_texture(device_context_type & device_context,
-														const region<view_scissor_bounds> & viewport_stack_storage,
-														const region<view_scissor_bounds> & scissor_rect_stack_storage,
+														const region<viewport_type> & viewport_stack_storage,
+														const region<scissor_rect_type> & scissor_rect_stack_storage,
 														texture_2d_resource_type & texture_2d_resource,
 														atlxr_uint width,
 														atlxr_uint height);

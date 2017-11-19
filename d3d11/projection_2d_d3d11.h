@@ -11,14 +11,13 @@ namespace atlxrconfig_namespace
 {
 	struct projection_2d_type
 	{
-		region<box2f> projection_bounds_stack = {nullptr, nullptr};
-		box2f * projection_bounds_head = nullptr;
+		region_stack_type<box2f> projection_bounds_stack = {{nullptr, nullptr}, nullptr};
 
 		buffer_resource_type constant_buffer;
 
 		bool is_valid() const
 		{
-			return projection_bounds_stack.begin() < projection_bounds_stack.end() && constant_buffer.is_valid();
+			return !projection_bounds_stack.internal_storage.empty() && constant_buffer.is_valid();
 		}
 
 		void free()

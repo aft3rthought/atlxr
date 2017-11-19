@@ -21,23 +21,18 @@ namespace atlxrconfig_namespace
 				// TODO: Error reporting
 				return false;
 			}
-			else
+
+			if(!window_context.render_target.viewport_stack.full())
 			{
-				// Bind the view
-				device_context.immediate_context->OMSetRenderTargets(1, &window_context.render_target.render_target_view, nullptr);
-
-				// Setup the viewport
-				D3D11_VIEWPORT vp;
-				vp.Width = window_context.window.width;
-				vp.Height = window_context.window.height;
-				vp.MinDepth = 0.0f;
-				vp.MaxDepth = 1.0f;
-				vp.TopLeftX = 0;
-				vp.TopLeftY = 0;
-				device_context.immediate_context->RSSetViewports(1, &vp);
-
-				if(device_context.dxgiDevice3)
-					device_context.dxgiDevice3->SetMaximumFrameLatency(1);
+				D3D11_VIEWPORT viewport;
+				viewport.TopLeftX = 0;
+				viewport.TopLeftY = 0;
+				viewport.Width = window_context.render_target.width;
+				viewport.Height = window_context.render_target.height;
+				viewport.MinDepth = 0.f;
+				viewport.MaxDepth = 1.f;
+				device_context.immediate_context->RSSetViewports(1, &viewport);
+				window_context.render_target.viewport_stack.push().viewport = viewport;
 			}
 		}
 		return true;
@@ -45,17 +40,15 @@ namespace atlxrconfig_namespace
 
 	window_context_type create_window_context(device_context_type & device_context,
 											  const window_type & window,
-											  const region<view_scissor_bounds> & viewport_stack_storage,
-											  const region<view_scissor_bounds> & scissor_rect_stack_storage)
+											  const region<viewport_type> & viewport_stack_storage,
+											  const region<scissor_rect_type> & scissor_rect_stack_storage)
 	{
 		window_context_type result;
 		result.window = window;
 		result.render_target.width = window.width;
 		result.render_target.height = window.height;
-		result.render_target.viewport_stack_storage = viewport_stack_storage;
-		result.render_target.scissor_rect_stack_storage = scissor_rect_stack_storage;
-		result.render_target.viewport_stack_head = viewport_stack_storage.begin();
-		result.render_target.scissor_rect_stack_head = scissor_rect_stack_storage.begin();
+		result.render_target.viewport_stack = {viewport_stack_storage};
+		result.render_target.scissor_rect_stack = {scissor_rect_stack_storage};
 
 		DXGI_SWAP_CHAIN_DESC1 swapchain_descriptor;
 		ZeroMemory(&swapchain_descriptor, sizeof(swapchain_descriptor));
@@ -101,13 +94,25 @@ namespace atlxrconfig_namespace
 													window_context_type & window_context,
 													const window_type & window)
 	{
+		/*
+		D3D11_VIEWPORT vp;
+		vp.Width = game->graphics.window.width;
+		vp.Height = game->graphics.window.height;
+		vp.MinDepth = 0.0f;
+		vp.MaxDepth = 1.0f;
+		vp.TopLeftX = 0;
+		vp.TopLeftY = 0;
+		game->graphics.device_context.immediate_context->RSSetViewports(1, &vp);
+		*game->graphics.main_target_viewport_stack.begin() = {vp};
+		*/
+
 		if(!window_context.is_valid())
 		{
 			window_context.free();
 			window_context = create_window_context(device_context,
 												   window,
-												   window_context.render_target.viewport_stack_storage,
-												   window_context.render_target.scissor_rect_stack_storage);
+												   window_context.render_target.viewport_stack.internal_storage,
+												   window_context.render_target.scissor_rect_stack.internal_storage);
 		}
 		else if(window.width != window_context.window.width
 				|| window.height != window_context.window.height
