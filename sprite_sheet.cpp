@@ -117,7 +117,8 @@ namespace atlxrconfig_namespace
 														 false,
 														 false,
 														 false,
-														 false, data_format_type::unorm8_rgba,
+														 false,
+														 data_format_type::unorm8_rgba,
 														 in_sampling_mode,
 														 {imageDataOut, imageDataOut + imageWidthOut * imageHeightOut * 4});
 					for(auto idx : sheet_sprites)
