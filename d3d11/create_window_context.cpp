@@ -33,7 +33,7 @@ namespace atlxrconfig_namespace
 				viewport.MaxDepth = 1.f;
 				device_context.immediate_context->RSSetViewports(1, &viewport);
 				window_context.render_target.viewport_stack.push().viewport = viewport;
-			}
+			} 
 		}
 		return true;
 	}
@@ -141,6 +141,12 @@ namespace atlxrconfig_namespace
 			else if(FAILED(hr))
 				return update_window_result_type::other_failure;
 
+			window_context.render_target.width = window.width;
+			window_context.render_target.height = window.height;
+			// TODO: This is done here, because finalize pushes onto the stack too. Does it have to??
+			if(!window_context.render_target.viewport_stack.empty())
+				window_context.render_target.viewport_stack.pop();
+			window_context.window = window;
 			if(!finalize_window_context(device_context, window_context))
 				return update_window_result_type::other_failure;
 		}
