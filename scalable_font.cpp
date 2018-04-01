@@ -51,7 +51,7 @@ namespace atlxrconfig_namespace
 		l_charInfos.reserve(l_numCharacters);
 
 		float l_minBoundsY = std::numeric_limits<float>::max();
-		float l_maxBoundsY = -std::numeric_limits<float>::max();
+		float l_maxBoundsY = std::numeric_limits<float>::min();
 		while(l_numCharacters-- > 0)
 		{
 			l_charInfos.emplace_back();
