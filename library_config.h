@@ -8,8 +8,11 @@
 #define atlxrconfig_atlcrossplatform atl
 #define atlxrconfig_stdlib std
 
-using atlxr_sint = long;
-using atlxr_uint = size_t;
+namespace atlxrconfig_namespace
+{
+	using lib_int = int;
+	using lib_unsigned = unsigned;
+}
 
 #define atlxr_allocate atlxr_allocate_impl
 #define altxr_free altxr_free_impl

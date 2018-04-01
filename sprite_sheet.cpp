@@ -4,6 +4,7 @@
 #include "ATLXR/lodepng.h"
 
 #include "ATLUtil/bit_string.h"
+#include "ATLUtil/numeric_casts.h"
 
 namespace atlxrconfig_namespace
 {
@@ -43,7 +44,7 @@ namespace atlxrconfig_namespace
 			uint32_t sheetWidth = 1 << fontSheetWidthPower;
 			uint32_t sheetHeight = 1 << fontSheetHeightPower;
 
-			atl::size2f sheetSize(sheetWidth, sheetHeight);
+			atl::size2f sheetSize(atl::default_u32_to_float(sheetWidth), atl::default_u32_to_float(sheetHeight));
 
 			sheet_sprites.clear();
 

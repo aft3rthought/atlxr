@@ -10,20 +10,20 @@ namespace atlxrconfig_namespace
 {
 	using namespace atlxrconfig_atlutil;
 
-	constexpr atlxr_uint enum_mask_unorm  = 0b0000000000000001;
-	constexpr atlxr_uint enum_mask_snorm  = 0b0000000000000010;
-	constexpr atlxr_uint enum_mask_uint   = 0b0000000000000100;
-	constexpr atlxr_uint enum_mask_sint   = 0b0000000000001000;
-	constexpr atlxr_uint enum_mask_float  = 0b0000000000010000;
-	constexpr atlxr_uint enum_mask_size8  = 0b0000000000100000;
-	constexpr atlxr_uint enum_mask_size16 = 0b0000000001000000;
-	constexpr atlxr_uint enum_mask_size32 = 0b0000000010000000;
-	constexpr atlxr_uint enum_mask_count1 = 0b0000000100000000;
-	constexpr atlxr_uint enum_mask_count2 = 0b0000001000000000;
-	constexpr atlxr_uint enum_mask_count3 = 0b0000010000000000;
-	constexpr atlxr_uint enum_mask_count4 = 0b0000100000000000;
+	constexpr lib_unsigned enum_mask_unorm  = 0b0000000000000001;
+	constexpr lib_unsigned enum_mask_snorm  = 0b0000000000000010;
+	constexpr lib_unsigned enum_mask_uint   = 0b0000000000000100;
+	constexpr lib_unsigned enum_mask_sint   = 0b0000000000001000;
+	constexpr lib_unsigned enum_mask_float  = 0b0000000000010000;
+	constexpr lib_unsigned enum_mask_size8  = 0b0000000000100000;
+	constexpr lib_unsigned enum_mask_size16 = 0b0000000001000000;
+	constexpr lib_unsigned enum_mask_size32 = 0b0000000010000000;
+	constexpr lib_unsigned enum_mask_count1 = 0b0000000100000000;
+	constexpr lib_unsigned enum_mask_count2 = 0b0000001000000000;
+	constexpr lib_unsigned enum_mask_count3 = 0b0000010000000000;
+	constexpr lib_unsigned enum_mask_count4 = 0b0000100000000000;
 
-	enum class data_format_type : atlxr_uint
+	enum class data_format_type : lib_unsigned
 	{
 		invalid = 0,
 		unorm8_r = enum_mask_unorm | enum_mask_size8 | enum_mask_count1,
@@ -36,7 +36,7 @@ namespace atlxrconfig_namespace
 		float32_rgba = enum_mask_float | enum_mask_size32 | enum_mask_count4,
 	};
 
-	inline atlxr_uint data_format_size(data_format_type data_format)
+	inline lib_unsigned data_format_size(data_format_type data_format)
 	{
 		switch(data_format)
 		{
@@ -68,14 +68,14 @@ namespace atlxrconfig_namespace
 	struct vertex_shader_input_structure_type;
 	struct pixel_shader_input_structure_type;
 
-	enum class buffer_variety_type
+	enum class buffer_variety_type : lib_int
 	{
 		vertex,
 		index,
 		uniform_constant,
 	};
 
-	enum class sampling_mode
+	enum class sampling_mode : lib_int
 	{
 		linear,
 		nearest_neighbor,
@@ -92,8 +92,8 @@ namespace atlxrconfig_namespace
 														const region<viewport_type> & viewport_stack_storage,
 														const region<scissor_rect_type> & scissor_rect_stack_storage,
 														texture_2d_resource_type & texture_2d_resource,
-														atlxr_uint width,
-														atlxr_uint height);
+														lib_unsigned width,
+														lib_unsigned height);
 
 	blend_state_type create_blend_state(device_context_type & device_context);
 
@@ -111,7 +111,7 @@ namespace atlxrconfig_namespace
 													 bool cpu_write_necessary,
 													 bool cpu_read_necessary,
 													 buffer_variety_type buffer_variety,
-													 atlxr_uint size);
+													 lib_unsigned size);
 
 	vertex_shader_resource_type create_vertex_shader(device_context_type & device_context,
 													 const region<unsigned char> & shader_text,
@@ -122,8 +122,8 @@ namespace atlxrconfig_namespace
 												   const pixel_shader_input_structure_type & input_structure);
 
 	texture_2d_resource_type create_texture_2d_resource(device_context_type & device_context,
-														atlxr_uint width_pixels,
-														atlxr_uint height_pixels,
+														lib_unsigned width_pixels,
+														lib_unsigned height_pixels,
 														bool gpu_write_necessary,
 														bool cpu_write_necessary,
 														bool cpu_read_necessary,
@@ -133,8 +133,8 @@ namespace atlxrconfig_namespace
 														const region<unsigned char> & data);
 
 	texture_2d_resource_type create_uninitialized_texture_2d_resource(device_context_type & device_context,
-																	  atlxr_uint width_pixels,
-																	  atlxr_uint height_pixels,
+																	  lib_unsigned width_pixels,
+																	  lib_unsigned height_pixels,
 																	  bool gpu_write_necessary,
 																	  bool cpu_write_necessary,
 																	  bool cpu_read_necessary,

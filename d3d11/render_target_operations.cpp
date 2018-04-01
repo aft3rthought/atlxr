@@ -1,6 +1,8 @@
 
 #include "ATLXR/d3d11/library_d3d11.h"
 
+#include "ATLUtil/numeric_casts.h"
+
 namespace atlxrconfig_namespace
 {
 	void set_active_render_target(device_context_type & device_context, render_target_type & render_target)
@@ -24,8 +26,8 @@ namespace atlxrconfig_namespace
 		{
 			D3D11_RECT fallback_scissor_rect;
 			fallback_scissor_rect.top = 0;
-			fallback_scissor_rect.right = render_target.width;
-			fallback_scissor_rect.bottom = render_target.height;
+			fallback_scissor_rect.right = LONG{atl::default_float_to_long(render_target.width)};
+			fallback_scissor_rect.bottom = LONG{atl::default_float_to_long(render_target.height)};
 			fallback_scissor_rect.left = 0;
 			device_context.immediate_context->RSSetScissorRects(1, &fallback_scissor_rect);
 		}

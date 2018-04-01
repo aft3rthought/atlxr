@@ -1,6 +1,8 @@
 
 #include "ATLXR/d3d11/library_d3d11.h"
 
+#include "ATLUtil/numeric_casts.h"
+
 namespace atlxrconfig_namespace
 {
 	bool finalize_window_context(device_context_type & device_context, window_context_type & window_context)
@@ -52,8 +54,8 @@ namespace atlxrconfig_namespace
 
 		DXGI_SWAP_CHAIN_DESC1 swapchain_descriptor;
 		ZeroMemory(&swapchain_descriptor, sizeof(swapchain_descriptor));
-		swapchain_descriptor.Width = window.width;		// Match the size of the window.
-		swapchain_descriptor.Height = window.height;
+		swapchain_descriptor.Width = atl::default_float_to_unsigned(window.width);		// Match the size of the window.
+		swapchain_descriptor.Height = atl::default_float_to_unsigned(window.height);
 		swapchain_descriptor.Format = DXGI_FORMAT_B8G8R8A8_UNORM;				// This is the most common swap chain format.
 		swapchain_descriptor.Stereo = false;
 		swapchain_descriptor.SampleDesc.Count = 1;								// Don't use multi-sampling.
@@ -131,8 +133,8 @@ namespace atlxrconfig_namespace
 
 			// If the swap chain already exists, resize it.
 			auto hr = window_context.swap_chain->ResizeBuffers(2, // Double-buffered swap chain.
-															   window.width,
-															   window.height,
+															   atl::default_float_to_unsigned(window.width),
+															   atl::default_float_to_unsigned(window.height),
 															   DXGI_FORMAT_B8G8R8A8_UNORM,
 															   0);
 

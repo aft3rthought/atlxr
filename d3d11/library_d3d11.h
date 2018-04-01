@@ -7,7 +7,7 @@
 namespace atlxrconfig_namespace
 {
 	template <typename result_type>
-	inline result_type * atlxr_allocate_impl(atlxr_uint count)
+	inline result_type * atlxr_allocate_impl(lib_unsigned count)
 	{
 		return (result_type *)malloc(sizeof(result_type) * count);
 	}
@@ -57,8 +57,8 @@ namespace atlxrconfig_namespace
 
 	struct render_target_type
 	{
-		atlxr_uint width = 0;
-		atlxr_uint height = 0;
+		float width = 0.f;
+		float height = 0.f;
 		region_stack_type<viewport_type> viewport_stack = {{nullptr, nullptr}, nullptr};
 		region_stack_type<scissor_rect_type> scissor_rect_stack = {{nullptr, nullptr}, nullptr};
 		ID3D11RenderTargetView * render_target_view = nullptr;
@@ -81,8 +81,8 @@ namespace atlxrconfig_namespace
 		Platform::Agile<Windows::UI::Core::CoreWindow> core_window;
 		float width = 0;
 		float height = 0;
-		atlxr_uint dpi = 0;
-		atlxr_uint orientation = 0;
+		float dpi = 0;
+		lib_unsigned orientation = 0;
 	};
 
 	struct window_context_type
@@ -221,7 +221,7 @@ namespace atlxrconfig_namespace
 	struct usage_and_cpu_flags_type
 	{
 		D3D11_USAGE usage;
-		atlxr_uint cpu_flags;
+		lib_unsigned cpu_flags;
 	};
 
 	inline usage_and_cpu_flags_type get_usage_and_cpu_flags_for_requirements(bool gpu_write_necessary,
@@ -240,15 +240,15 @@ namespace atlxrconfig_namespace
 	struct vertex_shader_input_element_type
 	{
 		const char * semantic_name;
-		atlxr_uint semantic_index;
+		lib_unsigned semantic_index;
 		data_format_type data_format;
-		atlxr_uint offset;
+		lib_unsigned offset;
 	};
 
 	struct vertex_shader_input_structure_type
 	{
 		vertex_shader_input_element_type * elements;
-		atlxr_uint element_count;
+		lib_unsigned element_count;
 		const char * main_function;
 	};
 

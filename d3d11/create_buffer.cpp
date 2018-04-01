@@ -3,7 +3,7 @@
 
 namespace atlxrconfig_namespace
 {
-	atlxr_uint get_bind_flags_for_buffer_variety(buffer_variety_type buffer_variety)
+	lib_int get_bind_flags_for_buffer_variety(buffer_variety_type buffer_variety)
 	{
 		switch(buffer_variety)
 		{
@@ -11,14 +11,14 @@ namespace atlxrconfig_namespace
 			case buffer_variety_type::index: return D3D11_BIND_INDEX_BUFFER;
 			case buffer_variety_type::uniform_constant: return D3D11_BIND_CONSTANT_BUFFER;
 		}
-		return 0;
+		return lib_int{0};
 	}
 
 	D3D11_BUFFER_DESC create_buffer_descriptor(bool gpu_write_necessary,
 											   bool cpu_write_necessary,
 											   bool cpu_read_necessary,
 											   buffer_variety_type buffer_variety,
-											   atlxr_uint size)
+											   lib_unsigned size)
 	{
 		const auto usage_and_cpu_flags = get_usage_and_cpu_flags_for_requirements(gpu_write_necessary, cpu_write_necessary, cpu_read_necessary);
 
@@ -68,7 +68,7 @@ namespace atlxrconfig_namespace
 													 bool cpu_write_necessary,
 													 bool cpu_read_necessary,
 													 buffer_variety_type buffer_variety,
-													 atlxr_uint size)
+													 lib_unsigned size)
 	{
 		buffer_resource_type result;
 

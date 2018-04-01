@@ -24,8 +24,8 @@ namespace atlxrconfig_namespace
 	}
 
 	texture_2d_resource_type create_texture_2d_resource(device_context_type & device_context,
-														atlxr_uint width_pixels,
-														atlxr_uint height_pixels,
+														lib_unsigned width_pixels,
+														lib_unsigned height_pixels,
 														bool gpu_write_necessary,
 														bool cpu_write_necessary,
 														bool cpu_read_necessary,
@@ -72,8 +72,8 @@ namespace atlxrconfig_namespace
 	}
 
 	texture_2d_resource_type create_uninitialized_texture_2d_resource(device_context_type & device_context,
-																	  atlxr_uint width_pixels,
-																	  atlxr_uint height_pixels,
+																	  lib_unsigned width_pixels,
+																	  lib_unsigned height_pixels,
 																	  bool gpu_write_necessary,
 																	  bool cpu_write_necessary,
 																	  bool cpu_read_necessary,
