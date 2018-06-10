@@ -11,10 +11,10 @@ namespace atlxrconfig_namespace
 
 	struct textured_2d_vertex_type
 	{
-		point2f position;
-		point2f texture_coordinates;
-		color color_multiply;
-		color color_lerp;
+		atl::point2f position;
+		atl::point2f texture_coordinates;
+		atl::color color_multiply;
+		atl::color color_lerp;
 	};
 
 	struct textured_2d_renderer_type
