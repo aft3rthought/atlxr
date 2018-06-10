@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include "ATLUtil/region_stack.h"
 #include "ATLXR/library_fwd.h"
 #include "ATLXR/d3d11/system_headers.h"
 

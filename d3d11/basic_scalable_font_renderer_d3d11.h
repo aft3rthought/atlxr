@@ -8,6 +8,6 @@ namespace atlxrconfig_namespace
 {
 	struct basic_scalable_font_renderer_shader_data_type
 	{
-		region<unsigned char> data;
+		region_type<unsigned char> data;
 	};
 }

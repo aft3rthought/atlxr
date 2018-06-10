@@ -38,7 +38,7 @@ namespace atlxrconfig_namespace
 									   bool cpu_write_necessary,
 									   bool cpu_read_necessary,
 									   buffer_variety_type buffer_variety,
-									   const region<unsigned char> & data)
+									   const region_type<unsigned char> & data)
 	{
 		buffer_resource_type result;
 

@@ -20,7 +20,7 @@ namespace atlxrconfig_namespace
 		characters.clear();
 	}
 
-	void scalable_font::unpack(device_context_type & api_context, const region<unsigned char> & in_sprite_sheet_bytes)
+	void scalable_font::unpack(device_context_type & api_context, const region_type<unsigned char> & in_sprite_sheet_bytes)
 	{
 		input_bit_string_type bit_string(in_sprite_sheet_bytes.begin(), in_sprite_sheet_bytes.end());
 

@@ -85,12 +85,12 @@ namespace atlxrconfig_namespace
 
 	window_context_type create_window_context(device_context_type & device_context,
 											  const window_type & window,
-											  const region<viewport_type> & viewport_stack_storage,
-											  const region<scissor_rect_type> & scissor_rect_stack_storage);
+											  const region_type<viewport_type> & viewport_stack_storage,
+											  const region_type<scissor_rect_type> & scissor_rect_stack_storage);
 
 	render_target_type create_render_target_for_texture(device_context_type & device_context,
-														const region<viewport_type> & viewport_stack_storage,
-														const region<scissor_rect_type> & scissor_rect_stack_storage,
+														const region_type<viewport_type> & viewport_stack_storage,
+														const region_type<scissor_rect_type> & scissor_rect_stack_storage,
 														texture_2d_resource_type & texture_2d_resource,
 														lib_unsigned width,
 														lib_unsigned height);
@@ -104,7 +104,7 @@ namespace atlxrconfig_namespace
 									   bool cpu_write_necessary,
 									   bool cpu_read_necessary,
 									   buffer_variety_type buffer_variety,
-									   const region<unsigned char> & data);
+									   const region_type<unsigned char> & data);
 
 	buffer_resource_type create_uninitialized_buffer(device_context_type & device_context,
 													 bool gpu_write_necessary,
@@ -114,11 +114,11 @@ namespace atlxrconfig_namespace
 													 lib_unsigned size);
 
 	vertex_shader_resource_type create_vertex_shader(device_context_type & device_context,
-													 const region<unsigned char> & shader_text,
+													 const region_type<unsigned char> & shader_text,
 													 const vertex_shader_input_structure_type & input_structure);
 
 	pixel_shader_resource_type create_pixel_shader(device_context_type & device_context,
-												   const region<unsigned char> & shader_text,
+												   const region_type<unsigned char> & shader_text,
 												   const pixel_shader_input_structure_type & input_structure);
 
 	texture_2d_resource_type create_texture_2d_resource(device_context_type & device_context,
@@ -130,7 +130,7 @@ namespace atlxrconfig_namespace
 														bool render_target_necessary,
 														data_format_type data_format,
 														sampling_mode sampling_mode,
-														const region<unsigned char> & data);
+														const region_type<unsigned char> & data);
 
 	texture_2d_resource_type create_uninitialized_texture_2d_resource(device_context_type & device_context,
 																	  lib_unsigned width_pixels,

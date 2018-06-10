@@ -21,7 +21,7 @@ namespace atlxrconfig_namespace
 		sprites.clear();
 	}
 
-    void sprite_sheet::unpack(device_context_type & api_context, const region<unsigned char> & in_sprite_sheet_bytes, const sampling_mode in_sampling_mode)
+    void sprite_sheet::unpack(device_context_type & api_context, const region_type<unsigned char> & in_sprite_sheet_bytes, const sampling_mode in_sampling_mode)
     {
 		input_bit_string_type bit_string(in_sprite_sheet_bytes.begin(), in_sprite_sheet_bytes.end());
 

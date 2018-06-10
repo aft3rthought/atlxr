@@ -5,8 +5,8 @@
 namespace atlxrconfig_namespace
 {
 	render_target_type create_render_target_for_texture(device_context_type & device_context,
-														const region<viewport_type> & viewport_stack_storage,
-														const region<scissor_rect_type> & scissor_rect_stack_storage,
+														const region_type<viewport_type> & viewport_stack_storage,
+														const region_type<scissor_rect_type> & scissor_rect_stack_storage,
 														texture_2d_resource_type & texture_2d_resource,
 														lib_unsigned width,
 														lib_unsigned height)

@@ -32,7 +32,7 @@ namespace atlxrconfig_namespace
 														bool render_target_necessary,
 														data_format_type data_format,
 														sampling_mode sampling_mode,
-														const region<unsigned char> & data)
+														const region_type<unsigned char> & data)
 	{
 		texture_2d_resource_type result;
 

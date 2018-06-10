@@ -7,7 +7,7 @@
 
 namespace atlxrconfig_namespace
 {
-	ID3DBlob * compile_shader(const char * target, const char * entry_point, const region<unsigned char> & shader_text)
+	ID3DBlob * compile_shader(const char * target, const char * entry_point, const region_type<unsigned char> & shader_text)
 	{
 		ID3DBlob * result = nullptr;
 
@@ -34,7 +34,7 @@ namespace atlxrconfig_namespace
 	}
 
 	vertex_shader_resource_type create_vertex_shader(device_context_type & device_context,
-													 const region<unsigned char> & shader_text,
+													 const region_type<unsigned char> & shader_text,
 													 const vertex_shader_input_structure_type & input_structure)
 	{
 		vertex_shader_resource_type result;
@@ -102,7 +102,7 @@ namespace atlxrconfig_namespace
 	}
 
 	pixel_shader_resource_type create_pixel_shader(device_context_type & device_context,
-												   const region<unsigned char> & shader_text,
+												   const region_type<unsigned char> & shader_text,
 												   const pixel_shader_input_structure_type & input_structure)
 	{
 		pixel_shader_resource_type result;

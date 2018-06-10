@@ -8,6 +8,6 @@ namespace atlxrconfig_namespace
 {
 	struct textured_2d_renderer_shader_data_type
 	{
-		region<unsigned char> data;
+		atl::region_type<unsigned char> data;
 	};
 }

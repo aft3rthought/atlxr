@@ -47,7 +47,7 @@ namespace atlxrconfig_namespace
 
         ~scalable_font();
 
-        void unpack(device_context_type & api_context, const region<unsigned char> & in_sprite_sheet_bytes);
+        void unpack(device_context_type & api_context, const region_type<unsigned char> & in_sprite_sheet_bytes);
 		void release();
     };
 }

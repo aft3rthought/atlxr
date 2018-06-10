@@ -42,8 +42,8 @@ namespace atlxrconfig_namespace
 
 	window_context_type create_window_context(device_context_type & device_context,
 											  const window_type & window,
-											  const region<viewport_type> & viewport_stack_storage,
-											  const region<scissor_rect_type> & scissor_rect_stack_storage)
+											  const region_type<viewport_type> & viewport_stack_storage,
+											  const region_type<scissor_rect_type> & scissor_rect_stack_storage)
 	{
 		window_context_type result;
 		result.window = window;

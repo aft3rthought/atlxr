@@ -5,7 +5,7 @@
 
 namespace atlxrconfig_namespace
 {
-	projection_2d_type create_projection_2d(device_context_type & device_context, const region<box2f> & stack_storage)
+	projection_2d_type create_projection_2d(device_context_type & device_context, const region_type<box2f> & stack_storage)
 	{
 		projection_2d_type result;
 		result.projection_bounds_stack = region_stack_type<box2f>(stack_storage);

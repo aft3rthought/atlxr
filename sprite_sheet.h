@@ -38,7 +38,7 @@ namespace atlxrconfig_namespace
 
         ~sprite_sheet();
 
-        void unpack(device_context_type & api_context, const region<unsigned char> & in_sprite_sheet_bytes, const sampling_mode in_sampling_mode);
+        void unpack(device_context_type & api_context, const region_type<unsigned char> & in_sprite_sheet_bytes, const sampling_mode in_sampling_mode);
 		void release();
     };
 }
