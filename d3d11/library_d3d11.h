@@ -166,6 +166,7 @@ namespace atlxrconfig_namespace
 		{
 			free_d3d_resource(texture);
 			free_d3d_resource(sampler_state);
+			free_d3d_resource(shader_resource_view);
 		}
 	};
 
