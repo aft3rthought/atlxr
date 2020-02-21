@@ -7,6 +7,18 @@ namespace atlxrconfig_namespace
 {
 	bool finalize_window_context(device_context_type & device_context, window_context_type & window_context)
 	{
+		if(!device_context.is_valid())
+		{
+			// TODO: Error reporting
+			return false;
+		}
+
+		if(window_context.swap_chain == nullptr)
+		{
+			// TODO: Error reporting
+			return false;
+		}
+
 		// Get a pointer to the back buffer
 		if(FAILED(window_context.swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&window_context.render_target.target_texture)))
 		{
@@ -45,6 +57,12 @@ namespace atlxrconfig_namespace
 											  const region_type<viewport_type> & viewport_stack_storage,
 											  const region_type<scissor_rect_type> & scissor_rect_stack_storage)
 	{
+		if(!device_context.is_valid())
+		{
+			// TODO: Error reporting
+			return window_context_type();
+		}
+
 		window_context_type result;
 		result.window = window;
 		result.render_target.width = window.width;
@@ -87,7 +105,11 @@ namespace atlxrconfig_namespace
 		{
 			result.swap_chain = dxgiSwapChain;
 			result.swap_chain1 = dxgiSwapChain;
-			finalize_window_context(device_context, result);
+			if(!finalize_window_context(device_context, result))
+			{
+				result.free();
+				// TODO: Error reporting
+			}
 		}
 		return result;
 	}
