@@ -72,11 +72,12 @@ namespace atlxrconfig_namespace
 	{
 		buffer_resource_type result;
 
+		constexpr lib_unsigned resource_alignment_size = 16;
 		auto descriptor = create_buffer_descriptor(gpu_write_necessary,
 												   cpu_write_necessary,
 												   cpu_read_necessary,
 												   buffer_variety,
-												   size);
+												   atl::integer_divide_rounding_up(size, resource_alignment_size) * resource_alignment_size);
 
 		auto status = device_context.device->CreateBuffer(&descriptor, nullptr, &result.buffer);
 
