@@ -13,7 +13,7 @@ namespace atlxrconfig_namespace
 	{
 		point2f position;
 		point2f texture_coordinates;
-		color color;
+		color_premul color;
 		float edge_value;
 		float radius_value;
 	};
