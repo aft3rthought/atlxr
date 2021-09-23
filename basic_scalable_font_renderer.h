@@ -16,6 +16,8 @@ namespace atlxrconfig_namespace
 		color_premul color;
 		float edge_value;
 		float radius_value;
+
+		basic_scalable_font_vertex_type() : color(0.f, 0.f, 0.f, 0.f) {}
 	};
 
 	struct basic_scalable_font_renderer_type

@@ -22,7 +22,7 @@ namespace atlxrconfig_namespace
 
 	void scalable_font::unpack(device_context_type & api_context, const region_type<unsigned char> & in_sprite_sheet_bytes)
 	{
-		input_bit_string_type bit_string(in_sprite_sheet_bytes.begin(), in_sprite_sheet_bytes.end());
+		auto bit_string = atl::bit_string_wrap_backing_buffer(simple_backing_buffer(in_sprite_sheet_bytes.begin(), in_sprite_sheet_bytes.size()));
 
 		struct l_CharInfo
 		{
@@ -73,9 +73,7 @@ namespace atlxrconfig_namespace
 		int32_t l_pngSizeInt32;
 		bit_string_read_value(bit_string, l_pngSizeInt32);
 		size_t l_pngSize = l_pngSizeInt32;
-		bit_string_skip_to_next_byte(bit_string);
-		const unsigned char * l_pngData = bit_string.ptr;
-		bit_string.ptr += l_pngSize;
+		const unsigned char * l_pngData = bit_string.backing_buffer.ptr;
 
 		// Read png:
 		unsigned char * l_fontSheetData;

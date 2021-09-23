@@ -23,12 +23,12 @@ namespace atlxrconfig_namespace
 
     void sprite_sheet::unpack(device_context_type & api_context, const region_type<unsigned char> & in_sprite_sheet_bytes, const sampling_mode in_sampling_mode)
     {
-		input_bit_string_type bit_string(in_sprite_sheet_bytes.begin(), in_sprite_sheet_bytes.end());
+		auto bit_string = atl::bit_string_wrap_backing_buffer(simple_backing_buffer(in_sprite_sheet_bytes.begin(), in_sprite_sheet_bytes.size()));
 
 		// Load frames:
-		uint32_t numSheets;
+		uint32_t numSheets = 0;
 		atl::bit_string_read_chunked_integer<uint32_t>(bit_string, numSheets, 3);
-		uint32_t totalSprites;
+		uint32_t totalSprites = 0;
 		atl::bit_string_read_chunked_integer<uint32_t>(bit_string, totalSprites, 7);
 
 		sprites.resize(totalSprites);
@@ -88,7 +88,10 @@ namespace atlxrconfig_namespace
 
 				// Deserialize the drawn area:
 				atl::box2f l_area;
-				atl::bit_string_read_values(bit_string, l_area.t, l_area.r, l_area.b, l_area.l);
+				atl::bit_string_read_value(bit_string, l_area.t);
+				atl::bit_string_read_value(bit_string, l_area.r); 
+				atl::bit_string_read_value(bit_string, l_area.b); 
+				atl::bit_string_read_value(bit_string, l_area.l);
 
 				sprites[spriteIndex].texture_coordinates = l_texCoords;
 				sprites[spriteIndex].area = l_area;
@@ -99,9 +102,7 @@ namespace atlxrconfig_namespace
 			int32_t numPNGBytesInt32;
 			atl::bit_string_read_value(bit_string, numPNGBytesInt32);
 			size_t numPNGBytes = numPNGBytesInt32;
-			atl::bit_string_skip_to_next_byte(bit_string);
-			const unsigned char * l_pngBytes = bit_string.ptr;
-			bit_string.ptr += numPNGBytes;
+			const unsigned char * l_pngBytes = bit_string.backing_buffer.ptr;
 
 			unsigned char * imageDataOut = nullptr;
 			unsigned int imageWidthOut;
