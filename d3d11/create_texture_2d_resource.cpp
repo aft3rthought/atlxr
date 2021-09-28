@@ -1,6 +1,8 @@
 
 #include "ATLXR/d3d11/library_d3d11.h"
 
+#include "ATLUtil/numeric_casts.h"
+
 namespace atlxrconfig_namespace
 {
 	HRESULT create_texture_sampler_state_and_shader_resource_view(device_context_type & device_context, texture_2d_resource_type & texture_2d_resource, sampling_mode sampling_mode)
@@ -54,7 +56,7 @@ namespace atlxrconfig_namespace
 		D3D11_SUBRESOURCE_DATA texture_data;
 		texture_data.pSysMem = data.begin();
 		texture_data.SysMemPitch = data_format_size(data_format) * width_pixels;
-		texture_data.SysMemSlicePitch = data.size();
+		texture_data.SysMemSlicePitch = atl::default_int_to_unsigned(atl::default_ptrdiff_to_int(data.size()));
 
 		auto status = device_context.device->CreateTexture2D(&descriptor, &texture_data, &result.texture);
 		if(status != S_OK)

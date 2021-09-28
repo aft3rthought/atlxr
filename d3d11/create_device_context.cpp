@@ -2,6 +2,7 @@
 #include "ATLXR/d3d11/library_d3d11.h"
 
 #include "ATLUtil/array_util.h"
+#include "ATLUtil/numeric_casts.h"
 
 namespace atlxrconfig_namespace
 {
@@ -39,7 +40,7 @@ namespace atlxrconfig_namespace
 									   nullptr,
 									   createDeviceFlags,
 									   all_d3d_feature_levels_11_1,
-									   c_array_len(all_d3d_feature_levels_11_1),
+									   atl::default_size_t_to_unsigned(c_array_len(all_d3d_feature_levels_11_1)),
 									   D3D11_SDK_VERSION,
 									   &result.device,
 									   nullptr,
@@ -50,7 +51,7 @@ namespace atlxrconfig_namespace
 								   D3D_DRIVER_TYPE_HARDWARE,
 								   nullptr, createDeviceFlags,
 								   all_d3d_feature_levels,
-								   c_array_len(all_d3d_feature_levels),
+								   atl::default_size_t_to_unsigned(c_array_len(all_d3d_feature_levels)),
 								   D3D11_SDK_VERSION,
 								   &result.device,
 								   nullptr,

@@ -1,6 +1,8 @@
 
 #include "ATLXR/d3d11/library_d3d11.h"
 
+#include "ATLUtil/numeric_casts.h"
+
 namespace atlxrconfig_namespace
 {
 	lib_int get_bind_flags_for_buffer_variety(buffer_variety_type buffer_variety)
@@ -46,7 +48,7 @@ namespace atlxrconfig_namespace
 												   cpu_write_necessary,
 												   cpu_read_necessary,
 												   buffer_variety,
-												   data.size());
+												   atl::default_ptrdiff_to_int(data.size()));
 
 		D3D11_SUBRESOURCE_DATA buffer_data;
 		buffer_data.pSysMem = data.begin();
